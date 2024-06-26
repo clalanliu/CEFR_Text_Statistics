@@ -26,18 +26,24 @@ def lemmatize(sentence):
 
 def add_word_freq(e):
     freqs = [get_word_freq(w) for w in e['lemmatized_clean']]
-    e['word_freq_std'] = np.std(freqs)
     e['word_freq_mean'] = np.mean(freqs)
+    e['word_freq_75'] = np.percentile(freqs, 75)
+    e['word_freq_25'] = np.percentile(freqs, 25)
     return e
 
 
 def add_oxford(e):
     matched = [match_word_with_banks(w) for w in e['lemmatized_clean']]
-    e['cefr_A1'] = sum([1 for m in matched if 'oxford_cefr_a1' in m])
-    e['cefr_A2'] = sum([1 for m in matched if 'oxford_cefr_a2' in m])
-    e['cefr_B1'] = sum([1 for m in matched if 'oxford_cefr_b1' in m])
-    e['cefr_B2'] = sum([1 for m in matched if 'oxford_cefr_b2' in m])
-    e['cefr_C1'] = sum([1 for m in matched if 'oxford_cefr_c1' in m])
+    e['cefr_A1'] = sum(
+        [1 for m in matched if 'oxford_cefr_a1' in m])/len(matched)
+    e['cefr_A2'] = sum(
+        [1 for m in matched if 'oxford_cefr_a2' in m])/len(matched)
+    e['cefr_B1'] = sum(
+        [1 for m in matched if 'oxford_cefr_b1' in m])/len(matched)
+    e['cefr_B2'] = sum(
+        [1 for m in matched if 'oxford_cefr_b2' in m])/len(matched)
+    e['cefr_C1'] = sum(
+        [1 for m in matched if 'oxford_cefr_c1' in m])/len(matched)
     return e
 
 
