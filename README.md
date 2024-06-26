@@ -1,5 +1,6 @@
 ## How to Classify Text into 5 CEFR Levels
 We use word frequency and numbers of CEFR vocabularies to classify.
+Dataset: https://www.kaggle.com/datasets/amontgomerie/cefr-levelled-english-texts
 
 ### Inspect
 ```
