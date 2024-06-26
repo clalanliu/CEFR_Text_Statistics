@@ -16,39 +16,20 @@ C1	0.000328	0.000180	132.556017	76.406639	50.850622	52.912863	23.531120
 ### Results
 RandomForest
 ```
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from xgboost import XGBClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, accuracy_score
+Accuracy: 0.54
+Classification Report:
+              precision    recall  f1-score   support
 
-X = df.drop('label', axis=1)
-y = df['label']
+          A1       0.74      0.84      0.78        67
+          A2       0.49      0.52      0.50        52
+          B1       0.37      0.31      0.33        36
+          B2       0.40      0.43      0.41        54
+          C1       0.51      0.43      0.47        51
+          C2       0.58      0.56      0.57        39
 
-# Encode labels
-label_encoder = LabelEncoder()
-y = label_encoder.fit_transform(y)
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, shuffle=True)
-
-# Initialize and train the XGBoost classifier
-#classifier = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss')
-classifier = RandomForestClassifier()
-classifier.fit(X_train, y_train)
-
-# Make predictions
-y_pred = classifier.predict(X_test)
-
-# Evaluate the model
-accuracy = accuracy_score(y_test, y_pred)
-report = classification_report(y_test, y_pred, target_names=label_encoder.classes_)
-
-print(f'Accuracy: {accuracy:.2f}')
-print('Classification Report:')
-print(report)
+    accuracy                           0.54       299
+   macro avg       0.51      0.51      0.51       299
+weighted avg       0.53      0.54      0.53       299
 ```
 
 Relax the criteria: count predictions that are within ±1 of the actual label as correct:
