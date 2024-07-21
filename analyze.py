@@ -35,15 +35,17 @@ def add_word_freq(e):
 def add_oxford(e):
     matched = [match_word_with_banks(w) for w in e['lemmatized_clean']]
     e['cefr_A1'] = sum(
-        [1 for m in matched if 'oxford_cefr_a1' in m])/len(matched)
+        [1 for m in matched if 'cefr_a1' in m])/len(matched)
     e['cefr_A2'] = sum(
-        [1 for m in matched if 'oxford_cefr_a2' in m])/len(matched)
+        [1 for m in matched if 'cefr_a2' in m])/len(matched)
     e['cefr_B1'] = sum(
-        [1 for m in matched if 'oxford_cefr_b1' in m])/len(matched)
+        [1 for m in matched if 'cefr_b1' in m])/len(matched)
     e['cefr_B2'] = sum(
-        [1 for m in matched if 'oxford_cefr_b2' in m])/len(matched)
+        [1 for m in matched if 'cefr_b2' in m])/len(matched)
     e['cefr_C1'] = sum(
-        [1 for m in matched if 'oxford_cefr_c1' in m])/len(matched)
+        [1 for m in matched if 'cefr_c1' in m])/len(matched)
+    e['cefr_C2'] = sum(
+        [1 for m in matched if 'cefr_c2' in m])/len(matched)
     return e
 
 
